@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "element-plus": "^1.0.2-beta.66",
+    "normalize.css": "^8.0.1",
     "vue": "^3.0.0",
     "vue-class-component": "^8.0.0-0",
     "vue-router": "^4.0.0-0",
@@ -22,9 +23,9 @@
     "@commitlint/config-conventional": "^13.1.0",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.18.0",
+    "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-plugin-router": "~4.5.0",
-    "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-typescript": "~4.5.0",
     "@vue/cli-plugin-vuex": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
@@ -39,6 +40,7 @@
     "husky": "^7.0.0",
     "less": "^3.0.4",
     "less-loader": "^5.0.0",
+    "normalize": "^0.3.1",
     "prettier": "^2.3.2",
     "typescript": "~4.1.5"
   },

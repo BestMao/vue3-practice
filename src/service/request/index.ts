@@ -31,7 +31,6 @@ class MaoRequest {
     //所有拦截器
     this.intance.interceptors.request.use(
       (config) => {
-        console.log('所有请求拦截成功')
         if (this.showLoading) {
           this.loading = ElLoading.service({
             lock: true,
@@ -49,12 +48,10 @@ class MaoRequest {
 
     this.intance.interceptors.response.use(
       (res) => {
-        console.log('所有响应拦截成功')
         this.loading?.close()
         return res.data
       },
       (err) => {
-        console.log('所有响应拦截失败')
         return err
       }
     )
