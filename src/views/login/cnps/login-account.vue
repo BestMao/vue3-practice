@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-09 22:45:31
- * @LastEditTime: 2021-08-10 22:50:17
+ * @LastEditTime: 2021-08-15 16:10:20
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue3-practice/src/views/login/cnps/login-account.vue
@@ -30,11 +30,14 @@ import { defineComponent, reactive, ref } from 'vue'
 import { rules } from '../config/account-config'
 import { ElForm } from 'element-plus'
 import LocalCache from '@/utils/cache'
+import { useStore } from 'vuex'
 export default defineComponent({
   props: {
     checked: Boolean
   },
   setup(props) {
+    const store = useStore()
+
     let account = reactive({
       name: '',
       password: ''
@@ -46,7 +49,7 @@ export default defineComponent({
 
     const ruleForm = ref<InstanceType<typeof ElForm>>()
     const accountLogin = (checked: boolean) => {
-      ruleForm.value?.validate((valid: boolean) => {
+      ruleForm.value?.validate((valid: any) => {
         if (valid) {
           if (checked) {
             LocalCache.setCatche('name', account.name)
@@ -55,6 +58,7 @@ export default defineComponent({
             LocalCache.deleteCatche('name')
             LocalCache.deleteCatche('password')
           }
+          store.dispatch('login/accountLoginAction', account)
         }
       })
     }
