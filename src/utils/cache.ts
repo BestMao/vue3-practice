@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 22:32:31
- * @LastEditTime: 2021-08-10 22:39:16
+ * @LastEditTime: 2021-08-16 22:09:10
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue3-practice/src/utils/cache.ts
@@ -11,7 +11,7 @@ class LocalCache {
     window.localStorage.setItem(key, JSON.stringify(value))
   }
 
-  getCatche(key: string) {
+  getCache(key: string) {
     const value = window.localStorage.getItem(key)
     if (value) {
       return JSON.parse(value)

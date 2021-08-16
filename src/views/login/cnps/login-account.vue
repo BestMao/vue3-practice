@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-09 22:45:31
- * @LastEditTime: 2021-08-15 16:10:20
+ * @LastEditTime: 2021-08-16 22:09:07
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue3-practice/src/views/login/cnps/login-account.vue
@@ -43,8 +43,8 @@ export default defineComponent({
       password: ''
     })
     if (props.checked) {
-      account.name = LocalCache.getCatche('name')
-      account.password = LocalCache.getCatche('password')
+      account.name = LocalCache.getCache('name')
+      account.password = LocalCache.getCache('password')
     }
 
     const ruleForm = ref<InstanceType<typeof ElForm>>()

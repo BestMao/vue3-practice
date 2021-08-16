@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-15 16:11:53
- * @LastEditTime: 2021-08-15 17:02:01
+ * @LastEditTime: 2021-08-15 21:18:10
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue3-practice/src/service/login/login.ts
@@ -32,7 +32,7 @@ export function requestUserInfoById(id: number) {
 
 export function requestUserMenusById(id: number) {
   return maoRequest.get<IDataType>({
-    url: LoginAPI.UserMenus + id,
+    url: LoginAPI.UserMenus + id + '/menu',
     showLoading: false
   })
 }

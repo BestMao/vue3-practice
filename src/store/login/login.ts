@@ -1,5 +1,5 @@
 import { Module } from 'vuex'
-import { IRootState } from '../tyoe'
+import { IRootState } from '../type'
 import { ILoginState } from './type'
 import {
   accountLoginRequest,
@@ -8,6 +8,7 @@ import {
 } from '@/service/login/login'
 import { IAccount } from '@/service/login/type'
 import localCache from '@/utils/cache'
+import router from '@/router'
 
 const loginModule: Module<ILoginState, IRootState> = {
   namespaced: true,
@@ -28,7 +29,6 @@ const loginModule: Module<ILoginState, IRootState> = {
     },
     changeUserMenus(state, userMenus: any) {
       state.userMenus = userMenus
-      console.log(state)
     }
   },
   actions: {
@@ -42,10 +42,28 @@ const loginModule: Module<ILoginState, IRootState> = {
       const userInfoResult = await requestUserInfoById(id)
       const userInfo = userInfoResult.data
       commit('changeUserInfo', userInfo)
+      localCache.setCatche('userInfo', userInfo)
       //获取菜单目录
       const userMenusResult = await requestUserMenusById(id)
       const userMenus = userMenusResult.data
       commit('changeUserMenus', userMenus)
+      localCache.setCatche('userMenus', userMenus)
+      //跳转
+      router.push('/main')
+    },
+    loadLocalLogin({ commit }) {
+      const token = localCache.getCache('token')
+      if (token) {
+        commit('changeToken', token)
+      }
+      const userInfo = localCache.getCache('userInfo')
+      if (userInfo) {
+        commit('changeUserInfo', userInfo)
+      }
+      const userMenus = localCache.getCache('userMenus')
+      if (userMenus) {
+        commit('changeUserMenus', userMenus)
+      }
     }
   }
 }

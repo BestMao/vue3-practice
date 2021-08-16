@@ -7,7 +7,7 @@ const maoRequest = new MaoRequest({
   timeout: TIME_OUT,
   interceptors: {
     requestInterceptor: (config) => {
-      const token = localCache.getCatche('token')
+      const token = localCache.getCache('token')
       if (token) {
         config.headers.Authorization = `Bearer ${token}`
       }
