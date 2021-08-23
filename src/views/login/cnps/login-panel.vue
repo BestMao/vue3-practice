@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-09 22:21:38
- * @LastEditTime: 2021-08-10 22:44:32
+ * @LastEditTime: 2021-08-18 21:11:57
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue3-practice/src/views/login/config/login-panel.vue
@@ -37,8 +37,6 @@ export default defineComponent({
   setup() {
     const checked = ref(true)
     const accountRef = ref<InstanceType<typeof loginAccount>>()
-    console.log(accountRef)
-
     const login = () => {
       accountRef.value?.accountLogin(checked.value)
     }

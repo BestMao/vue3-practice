@@ -1,15 +1,14 @@
 /*
  * @Author: your name
  * @Date: 2021-08-01 09:56:51
- * @LastEditTime: 2021-08-16 22:58:31
+ * @LastEditTime: 2021-08-18 21:14:22
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue3-practice/src/router/index.ts
  */
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-import store from '@/store'
 import localCache from '@/utils/cache'
-import { mapMenusToRoutes } from '@/utils/map-menus'
+import { firstMenu } from '@/utils/map-menus'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -39,11 +38,9 @@ router.beforeEach((to) => {
     if (!token) {
       return '/login'
     }
-    const userMenus = (store.state as any).login.userMenus
-    const routes = mapMenusToRoutes(userMenus)
-    routes.forEach((route) => {
-      router.addRoute('main', route)
-    })
+  }
+  if (to.path === '/main') {
+    return firstMenu.url
   }
 })
 export default router

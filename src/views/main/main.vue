@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-15 20:43:32
- * @LastEditTime: 2021-08-16 22:57:39
+ * @LastEditTime: 2021-08-17 22:34:55
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue3-practice/src/views/main/main.vue
@@ -9,9 +9,13 @@
 <template>
   <div class="main">
     <el-container class="main-content">
-      <el-aside width="200px"><nav-menu></nav-menu></el-aside>
+      <el-aside :width="isCollapse ? '60px' : '210px'">
+        <nav-menu :collapse="isCollapse"></nav-menu>
+      </el-aside>
       <el-container class="page">
-        <el-header class="page-header"><nav-header></nav-header></el-header>
+        <el-header class="page-header">
+          <nav-header @foldChange="foldChange"></nav-header>
+        </el-header>
         <el-main class="page-content">
           <div class="page-info">
             <router-view></router-view>
@@ -23,14 +27,22 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import NavHeader from '@/components/nav-header'
 import NavMenu from '@/components/nav-menu'
 
 export default defineComponent({
   components: { NavHeader, NavMenu },
   setup() {
-    return {}
+    const isCollapse = ref(false)
+    const foldChange = (isFold: boolean) => {
+      isCollapse.value = isFold
+    }
+
+    return {
+      foldChange,
+      isCollapse
+    }
   }
 })
 </script>

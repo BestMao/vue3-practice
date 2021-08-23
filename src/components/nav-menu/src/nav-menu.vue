@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-15 20:58:29
- * @LastEditTime: 2021-08-16 22:20:15
+ * @LastEditTime: 2021-08-18 20:59:58
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue3-practice/src/components/nav-menu/src/nav-menu.vue
@@ -13,7 +13,7 @@
       <span v-if="!collapse" class="title">Vue3+TS</span>
     </div>
     <el-menu
-      default-active="2"
+      :default-active="defaultMeun"
       class="el-menu-vertical"
       :collapse="collapse"
       background-color="#0c2135"
@@ -40,22 +40,36 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
-import { useStore } from '@/store/index'
-import { useRouter } from 'vue-router'
+import { defineComponent, computed, ref } from 'vue'
+// import store from '@/store/index'
+import { useStore } from '@/store'
+import { useRouter, useRoute } from 'vue-router'
+import { pathMapToMenu } from '@/utils/map-menus'
+// import defaultMenus from '@/utils/map-menus'
 
 export default defineComponent({
+  props: {
+    collapse: {
+      type: Boolean,
+      default: false
+    }
+  },
   setup() {
     const stroe = useStore()
     const router = useRouter()
+    const route = useRoute()
     const userMenus = computed(() => stroe.state.login.userMenus)
     const changUrl = (url: string) => {
       router.push(url)
     }
+    const currentPath = route.path
+    const menu = pathMapToMenu(userMenus.value, currentPath)
+    const defaultMeun = ref(menu.id)
 
     return {
       userMenus,
-      changUrl
+      changUrl,
+      defaultMeun
     }
   }
 })
