@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-15 20:43:32
- * @LastEditTime: 2021-08-17 22:34:55
+ * @LastEditTime: 2021-08-25 07:22:21
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue3-practice/src/views/main/main.vue
@@ -74,6 +74,13 @@ export default defineComponent({
 
 .el-header {
   height: 48px !important;
+}
+
+.page-info {
+  background: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  // text-align: left;
 }
 
 .el-aside {

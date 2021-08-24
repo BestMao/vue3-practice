@@ -1,25 +1,28 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-16 22:44:31
- * @LastEditTime: 2021-08-17 22:10:15
+ * @LastEditTime: 2021-08-25 07:20:27
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue3-practice/src/views/main/system/user/user.vue
 -->
 <template>
   <div class="user">
-    <div class="content">user</div>
+    <page-search :searchFormConfig="searchFormConfig"></page-search>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-
+import { searchFormConfig } from './comfig/searchConfig'
+import pageSearch from '@/components/nav-search'
 export default defineComponent({
   name: 'user',
-  components: {},
+  components: { pageSearch },
   setup() {
-    return {}
+    return {
+      searchFormConfig
+    }
   }
 })
 </script>
