@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-24 07:09:19
- * @LastEditTime: 2021-08-25 07:07:26
+ * @LastEditTime: 2021-08-31 12:34:05
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue3-practice/src/base-ui/form/src/maoForm.vue
@@ -17,13 +17,18 @@
           <el-form-item :label="item.label" :rules="item.rules" :style="itemStyle">
             <template v-if="item.type === 'input' || item.type === 'password'">
               <el-input
-                v-model="formData[`${item.field}`]"
+                :model-value="modelValue[`${item.field}`]"
                 :show-password="item.type === 'password'"
                 :placeholder="item.placeholder"
+                @update:modelValue="handleValueChange($event, item.field)"
               ></el-input>
             </template>
             <template v-if="item.type === 'select'">
-              <el-select :placeholder="item.label" v-model="formData[`${item.field}`]">
+              <el-select
+                :placeholder="item.label"
+                @update:modelValue="handleValueChange($event, item.field)"
+                :model-value="modelValue[`${item.field}`]"
+              >
                 <el-option
                   v-for="selectItem in item.options"
                   :key="selectItem.value"
@@ -34,8 +39,9 @@
             </template>
             <template v-if="item.type === 'datepicker'">
               <el-date-picker
-                v-model="formData[`${item.field}`]"
-                style="width: 100%"
+                :model-value="modelValue[`${item.field}`]"
+                @update:modelValue="handleValueChange($event, item.field)"
+                style="width: 130%"
                 :type="item.otherOptions.type"
                 range-separator="至"
                 start-placeholder="开始日期"
@@ -54,7 +60,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch, PropType } from 'vue'
+import { defineComponent, PropType } from 'vue'
 import { IFormItem } from '../type'
 
 export default defineComponent({
@@ -87,22 +93,28 @@ export default defineComponent({
   },
   emits: ['update:modelValue'],
   setup(props, { emit }) {
-    const formData = ref({ ...props.modelValue })
-    watch(
-      formData,
-      (newValue) => {
-        emit('update:modelValue', newValue)
-      },
-      {
-        deep: true
-      }
-    )
-
+    // const formData = ref({ ...props.modelValue })
+    // watch(
+    //   formData,
+    //   (newValue) => {
+    //     emit('update:modelValue', newValue)
+    //   },
+    //   {
+    //     deep: true
+    //   }
+    // )
+    const handleValueChange = (value: any, field: string) => {
+      emit('update:modelValue', { ...props.modelValue, [field]: value })
+    }
     return {
-      formData
+      handleValueChange
     }
   }
 })
 </script>
 
-<style scoped lang="less"></style>
+<style scoped lang="less">
+.maoForm {
+  padding-top: 22px;
+}
+</style>

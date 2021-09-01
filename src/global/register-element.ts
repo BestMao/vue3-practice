@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-03 21:55:37
- * @LastEditTime: 2021-08-18 19:52:01
+ * @LastEditTime: 2021-08-31 21:15:50
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue3-practice/src/global/register-element.ts
@@ -38,7 +38,9 @@ import {
   ElBreadcrumb,
   ElBreadcrumbItem,
   ElTable,
-  ElTableColumn
+  ElTableColumn,
+  ElPagination,
+  ElImage
 } from 'element-plus'
 
 const components = [
@@ -71,7 +73,9 @@ const components = [
   ElBreadcrumb,
   ElBreadcrumbItem,
   ElTable,
-  ElTableColumn
+  ElTableColumn,
+  ElPagination,
+  ElImage
 ]
 
 export default function (app: App): void {

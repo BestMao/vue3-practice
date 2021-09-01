@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-25 07:09:50
- * @LastEditTime: 2021-08-25 07:23:09
+ * @LastEditTime: 2021-08-31 12:39:40
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue3-practice/src/components/nav-search/src/search.vue
@@ -10,12 +10,12 @@
   <div class="page-search">
     <mao-form v-model="formData" v-bind="searchFormConfig">
       <template #header>
-        <h1 class="header">高级检索</h1>
+        <div class="header">高级检索</div>
       </template>
       <template #footer>
         <div class="handle-btns">
-          <el-button>重置</el-button>
-          <el-button type="primary">搜索</el-button>
+          <el-button @click="handleResetClick">重置</el-button>
+          <el-button type="primary" @click="handleQueryClick">搜索</el-button>
         </div>
       </template>
     </mao-form>
@@ -27,6 +27,7 @@ import maoForm from '@/base-ui/form'
 import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
+  emits: ['queryBtnClick', 'resetBtnClick'],
   props: {
     searchFormConfig: {
       type: Object,
@@ -34,15 +35,25 @@ export default defineComponent({
     }
   },
   components: { maoForm },
-  setup() {
-    const formData = ref({
-      account: null,
-      password: '',
-      department: '',
-      time: [null, null]
+  setup(props, { emit }) {
+    let formDataOrigin: any = {}
+    props.searchFormConfig?.formItems.forEach((i: any) => {
+      formDataOrigin[i.field] = ''
     })
+
+    const formData = ref(formDataOrigin)
+    const handleQueryClick = () => {
+      emit('queryBtnClick', formData.value)
+    }
+    const handleResetClick = () => {
+      formData.value = formDataOrigin
+      emit('resetBtnClick')
+    }
+
     return {
-      formData
+      formData,
+      handleQueryClick,
+      handleResetClick
     }
   }
 })

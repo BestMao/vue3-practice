@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-01 09:56:51
- * @LastEditTime: 2021-08-24 07:07:05
+ * @LastEditTime: 2021-08-25 21:07:29
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue3-practice/src/store/index.ts
@@ -9,6 +9,7 @@
 import { createStore, Store, useStore as useVuexStore } from 'vuex'
 import { IRootState, IStoreType } from './type'
 import login from './login/login'
+import system from './main/system'
 import { mapMenusToRoutes } from '@/utils/map-menus'
 import router from '@/router'
 
@@ -22,7 +23,8 @@ const store = createStore<IRootState>({
   mutations: {},
   actions: {},
   modules: {
-    login
+    login,
+    system
   }
 })
 

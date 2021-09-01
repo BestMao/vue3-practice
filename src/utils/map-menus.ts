@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-16 22:29:56
- * @LastEditTime: 2021-08-18 21:13:41
+ * @LastEditTime: 2021-09-01 21:01:31
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue3-practice/src/utils/map-menus.ts
@@ -68,6 +68,23 @@ export const pathMapToMenu = function (userMenus: any[], currentPath: string): a
       }
     }
   }
+}
+
+export const mapMenusToPermissions = function (userMenus: any[]) {
+  const permissions: string[] = []
+
+  const _recurseGetPermission = (menus: any[]) => {
+    for (const menu of menus) {
+      if (menu.type === 1 || menu.type === 2) {
+        _recurseGetPermission(menu.children ?? [])
+      } else if (menu.type === 3) {
+        permissions.push(menu.permission)
+      }
+    }
+  }
+  _recurseGetPermission(userMenus)
+
+  return permissions
 }
 
 export { firstMenu }
