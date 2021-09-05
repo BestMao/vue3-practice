@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-03 21:55:37
- * @LastEditTime: 2021-08-31 21:15:50
+ * @LastEditTime: 2021-09-05 16:52:56
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue3-practice/src/global/register-element.ts
@@ -40,7 +40,9 @@ import {
   ElTable,
   ElTableColumn,
   ElPagination,
-  ElImage
+  ElImage,
+  ElDialog,
+  ElTree
 } from 'element-plus'
 
 const components = [
@@ -75,7 +77,9 @@ const components = [
   ElTable,
   ElTableColumn,
   ElPagination,
-  ElImage
+  ElImage,
+  ElDialog,
+  ElTree
 ]
 
 export default function (app: App): void {

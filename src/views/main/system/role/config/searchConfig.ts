@@ -1,0 +1,36 @@
+/*
+ * @Author: your name
+ * @Date: 2021-08-25 07:16:23
+ * @LastEditTime: 2021-09-05 16:46:44
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /vue3-practice/src/views/main/system/user/comfig/searchComfig.ts
+ */
+import { IForm } from '@/base-ui/form/type'
+export const searchFormConfig: IForm = {
+  formItems: [
+    {
+      field: 'name',
+      type: 'input',
+      label: '角色名称',
+      placeholder: '请输入角色名称'
+    },
+    {
+      field: 'intro',
+      type: 'input',
+      label: '权限介绍',
+      placeholder: '请输入权限介绍'
+    },
+    {
+      field: 'createTime',
+      type: 'datepicker',
+      label: '创建时间',
+      otherOptions: {
+        startPlaceholder: '开始时间',
+        endPlaceholder: '结束时间',
+        type: 'daterange'
+      }
+    }
+  ],
+  labelWidth: '120px'
+}

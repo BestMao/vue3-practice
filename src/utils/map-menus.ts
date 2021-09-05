@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-16 22:29:56
- * @LastEditTime: 2021-09-01 21:01:31
+ * @LastEditTime: 2021-09-05 17:04:32
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue3-practice/src/utils/map-menus.ts
@@ -85,6 +85,23 @@ export const mapMenusToPermissions = function (userMenus: any[]) {
   _recurseGetPermission(userMenus)
 
   return permissions
+}
+
+export function menuMapLeafKeys(menuList: any[]) {
+  const leftKeys: number[] = []
+
+  const _recurseGetLeaf = (menuList: any[]) => {
+    for (const menu of menuList) {
+      if (menu.children) {
+        _recurseGetLeaf(menu.children)
+      } else {
+        leftKeys.push(menu.id)
+      }
+    }
+  }
+  _recurseGetLeaf(menuList)
+
+  return leftKeys
 }
 
 export { firstMenu }

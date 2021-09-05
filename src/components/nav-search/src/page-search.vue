@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-25 07:09:50
- * @LastEditTime: 2021-08-31 12:39:40
+ * @LastEditTime: 2021-09-05 10:09:32
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue3-practice/src/components/nav-search/src/search.vue
@@ -31,7 +31,7 @@ export default defineComponent({
   props: {
     searchFormConfig: {
       type: Object,
-      require: true
+      required: true
     }
   },
   components: { maoForm },

@@ -37,12 +37,13 @@ const loginModule: Module<ILoginState, IRootState> = {
     }
   },
   actions: {
-    async accountLoginAction({ commit }, paload: IAccount) {
+    async accountLoginAction({ commit, dispatch }, paload: IAccount) {
       //获取token
       const loginResult = await accountLoginRequest({ ...paload })
       const { id, token } = loginResult.data
       commit('changeToken', token)
       localCache.setCatche('token', token)
+      dispatch('getInitialDataAction', null, { root: true })
       //获取用户信息
       const userInfoResult = await requestUserInfoById(id)
       const userInfo = userInfoResult.data

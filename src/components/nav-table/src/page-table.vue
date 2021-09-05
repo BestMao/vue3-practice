@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-29 16:30:29
- * @LastEditTime: 2021-09-01 21:19:06
+ * @LastEditTime: 2021-09-05 17:15:12
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue3-practice/src/components/nav-table/src/table.vue
@@ -11,7 +11,7 @@
     <mao-table :listData="dataList" v-bind="tableConfig" v-model:page="pageInfo">
       <template #header> </template>
       <template #headerHandler v-if="isCreate">
-        <el-button type="primary">添加用户</el-button>
+        <el-button type="primary" @click="handlerAdd">添加用户</el-button>
       </template>
       <template #status="scope">
         <el-button plain size="mini" :type="scope.row.enable ? 'success' : 'danger'">
@@ -24,10 +24,12 @@
       <template #updateTime="scope">
         {{ $filter.formatTime(scope.row.updateAt) }}
       </template>
-      <template #handler>
+      <template #handler="scope">
         <div class="optionsBox">
-          <el-button type="text" v-if="isUpdate">编辑</el-button>
-          <el-button type="text" v-if="isDelete">删除</el-button>
+          <el-button type="text" v-if="isUpdate" @click="handlerEidt(scope.row)">编辑</el-button>
+          <el-button type="text" v-if="isDelete" @click="handleDeleteClick(scope.row)"
+            >删除</el-button
+          >
         </div>
       </template>
 
@@ -50,14 +52,15 @@ export default defineComponent({
   props: {
     tableConfig: {
       type: Object,
-      require: true
+      required: true
     },
     pageName: {
       type: String,
       required: true
     }
   },
-  setup(props) {
+  emits: ['handlerAdd', 'handlerEdit'],
+  setup(props, { emit }) {
     const store = useStore()
 
     const isCreate = usePermission(props.pageName, 'create')
@@ -91,6 +94,21 @@ export default defineComponent({
       return true
     })
 
+    const handleDeleteClick = (item: any) => {
+      store.dispatch('system/deletePageDataAction', {
+        pageName: props.pageName,
+        id: item.id
+      })
+    }
+
+    const handlerAdd = () => {
+      emit('handlerAdd')
+    }
+
+    const handlerEidt = (row: any) => {
+      emit('handlerEdit', row)
+    }
+
     return {
       dataList,
       getPageTable,
@@ -99,7 +117,10 @@ export default defineComponent({
       isCreate,
       isUpdate,
       isDelete,
-      isQuery
+      isQuery,
+      handlerAdd,
+      handlerEidt,
+      handleDeleteClick
     }
   }
 })

@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-25 21:44:54
- * @LastEditTime: 2021-09-01 21:19:03
+ * @LastEditTime: 2021-09-05 10:09:34
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue3-practice/src/base-ui/tabble/src/table.vue
@@ -29,6 +29,7 @@
       </el-table-column>
       <el-table-column
         v-for="propItem in propList"
+        show-overflow-tooltip
         :key="propItem.prop"
         v-bind="propItem"
         align="center"
@@ -68,11 +69,11 @@ export default defineComponent({
     },
     listData: {
       type: Array,
-      require: true
+      required: true
     },
     propList: {
       type: Array,
-      require: true
+      required: true
     },
     showSelectColumn: {
       type: Boolean,

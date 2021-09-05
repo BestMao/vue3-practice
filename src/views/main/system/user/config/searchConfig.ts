@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-25 07:16:23
- * @LastEditTime: 2021-08-31 19:49:08
+ * @LastEditTime: 2021-09-05 09:10:12
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue3-practice/src/views/main/system/user/comfig/searchComfig.ts
@@ -33,7 +33,7 @@ export const searchFormConfig: IForm = {
       ]
     }
   ],
-  itemLayout: {
+  itemStyle: {
     padding: '10px 40px'
   },
   colLayout: {

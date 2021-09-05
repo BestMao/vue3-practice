@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-24 07:09:19
- * @LastEditTime: 2021-08-31 12:34:05
+ * @LastEditTime: 2021-09-05 09:36:44
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue3-practice/src/base-ui/form/src/maoForm.vue
@@ -11,10 +11,15 @@
     <div class="header">
       <slot name="header"></slot>
     </div>
-    <el-form :inline="true" class="demo-form-inline" :label-width="labelWidth">
+    <el-form :inline="true" :label-width="labelWidth">
       <el-row>
         <el-col v-bind="colLayout" v-for="item in formItems" :key="item.label">
-          <el-form-item :label="item.label" :rules="item.rules" :style="itemStyle">
+          <el-form-item
+            :label="item.label"
+            :rules="item.rules"
+            :style="itemStyle"
+            v-if="!item.isHidden"
+          >
             <template v-if="item.type === 'input' || item.type === 'password'">
               <el-input
                 :model-value="modelValue[`${item.field}`]"
@@ -25,6 +30,7 @@
             </template>
             <template v-if="item.type === 'select'">
               <el-select
+                style="width: 100%"
                 :placeholder="item.label"
                 @update:modelValue="handleValueChange($event, item.field)"
                 :model-value="modelValue[`${item.field}`]"
@@ -41,7 +47,7 @@
               <el-date-picker
                 :model-value="modelValue[`${item.field}`]"
                 @update:modelValue="handleValueChange($event, item.field)"
-                style="width: 130%"
+                style="width: 100%"
                 :type="item.otherOptions.type"
                 range-separator="至"
                 start-placeholder="开始日期"
