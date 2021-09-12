@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-09-05 09:50:24
- * @LastEditTime: 2021-09-05 17:01:50
+ * @LastEditTime: 2021-09-12 11:26:15
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue3-practice/src/hook/use-page-modal.ts
@@ -16,13 +16,17 @@ export const usePageModal = function (newCb?: CallbackFn, editCb?: CallbackFn) {
   const defaultInfo = ref({})
   const handlerEdit = (row: any) => {
     defaultInfo.value = { ...row }
+    if (modalRef.value) {
+      modalRef.value.dialogVisible = true
+    }
     editCb && editCb(row)
-    modalRef.value.dialogVisible = true
   }
   const handlerAdd = () => {
     defaultInfo.value = {}
+    if (modalRef.value) {
+      modalRef.value.dialogVisible = true
+    }
     newCb && newCb()
-    modalRef.value.dialogVisible = true
   }
 
   return [modalRef, defaultInfo, handlerEdit, handlerAdd]

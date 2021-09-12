@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-03 21:55:37
- * @LastEditTime: 2021-09-05 16:52:56
+ * @LastEditTime: 2021-09-12 11:02:10
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue3-practice/src/global/register-element.ts
@@ -42,7 +42,8 @@ import {
   ElPagination,
   ElImage,
   ElDialog,
-  ElTree
+  ElTree,
+  ElCard
 } from 'element-plus'
 
 const components = [
@@ -79,7 +80,8 @@ const components = [
   ElPagination,
   ElImage,
   ElDialog,
-  ElTree
+  ElTree,
+  ElCard
 ]
 
 export default function (app: App): void {

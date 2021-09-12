@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-25 20:59:46
- * @LastEditTime: 2021-09-05 10:34:07
+ * @LastEditTime: 2021-09-12 11:18:47
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue3-practice/src/store/main/system/index.ts
@@ -9,6 +9,7 @@
 import { Module } from 'vuex'
 import type { ISystemState } from './type'
 import type { IRootState } from '@/store/type'
+
 import {
   getPageListData,
   createPageData,
